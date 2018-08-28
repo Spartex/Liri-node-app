@@ -98,6 +98,7 @@ function movieThis() {
 	})
 }
 
+//Not able to get data printed from bandsintown API for some reason
 
 //function concertThis() {
 	//var queryUrl = ("https://rest.bandsintown.com/artists" + userInput + "/events?app_id=codingbootcamp"); 
@@ -107,7 +108,7 @@ function movieThis() {
 			//console.log ("Everything is look good!!");
 		//} 
 		//console.log("---------------------------------------------");
-		//console.log("Band Name: " + JSON.parse(events)["artistName"]);
+		//console.log("Band Name: " + JSON.parse(events)["name"]);
 		//console.log("Band Name: " + JSON.parse["venue.name"]);
 
 	//})
