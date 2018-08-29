@@ -7,9 +7,12 @@ var keys = require("./keys.js");
 var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 var fs = require("fs");
+var chalk = require("chalk");
 var args = process.argv.slice(2);
 var command = args[0];
 var userInput = args.slice(1).join(" ");
+
+
 
 
 if (command === "spotify-this-song") {
@@ -43,10 +46,10 @@ function spotifyThis() {
 			return console.log(err);
 		} else {
 			console.log("---------------------------------------------");
-			console.log("Artist: " + data.tracks.items[0].album.artists[0].name); // artist's name
-			console.log("Song name: " + data.tracks.items[0].name) // song name
-			console.log("External url: " + data.tracks.items[0].album.external_urls.spotify) // external link
-			console.log("Album: " + data.tracks.items[0].album.name) // album name
+			console.log(chalk.cyan("Artist: " + data.tracks.items[0].album.artists[0].name)); // artist's name
+			console.log(chalk.cyan("Song name: " + data.tracks.items[0].name)) // song name
+			console.log(chalk.cyan("External url: " + data.tracks.items[0].album.external_urls.spotify)) // external link
+			console.log(chalk.cyan("Album: " + data.tracks.items[0].album.name)) // album name
 		}
 
 		fs.appendFile("log.txt", "\nAppending this song and artist data: " +
@@ -75,15 +78,15 @@ function movieThis() {
 		}
 
 		console.log("---------------------------------------------");
-		console.log("Movie Title: " + JSON.parse(body)["Title"]);
-		console.log("Movie Release Date : " + JSON.parse(body)["Title"]);
-		console.log("Movie Release Date : " + JSON.parse(body)["Year"]);
-		console.log("Movie Rating : " + JSON.parse(body)["imdbRating"]);
-		console.log("Movie Rotten Tomato Rating : " + JSON.parse(body)["tomatoRating"]);
-		console.log("Movie was produced in : " + JSON.parse(body)["Country"]);
-		console.log("Movie Language : " + JSON.parse(body)["Language"]);
-		console.log("Movie Plot : " + JSON.parse(body)["Plot"]);
-		console.log("Movie Actors : " + JSON.parse(body)["Actors"]);
+		console.log(chalk.red("Movie Title: " + JSON.parse(body)["Title"]));
+		console.log(chalk.red("Movie Release Date : " + JSON.parse(body)["Title"]));
+		console.log(chalk.green("Movie Release Date : " + JSON.parse(body)["Year"]));
+		console.log(chalk.green("Movie Rating : " + JSON.parse(body)["imdbRating"]));
+		console.log(chalk.blue("Movie Rotten Tomato Rating : " + JSON.parse(body)["tomatoRating"]));
+		console.log(chalk.blue("Movie was produced in : " + JSON.parse(body)["Country"]));
+		console.log(chalk.hex("#DEADED").bold("Movie Language : " + JSON.parse(body)["Language"]));
+		console.log(chalk.hex("#DEADED").bold("Movie Plot : " + JSON.parse(body)["Plot"]));
+		console.log(chalk.hex("#DEADED").bold("Movie Actors : " + JSON.parse(body)["Actors"]));
 
 
 
@@ -100,7 +103,7 @@ function movieThis() {
 	})
 }
 
-//Not able to get data printed from bandsintown API
+//Not able to get data printed from bandsintown API for some reason?!
 
 function concertThis() {
 	var queryUrl = ("https://rest.bandsintown.com/artists" + userInput + "/events?app_id=codingbootcamp");
