@@ -103,10 +103,10 @@ function movieThis() {
 	})
 }
 
-//Not able to get data printed from bandsintown API for some reason?!
+
 
 function concertThis() {
-	var queryUrl = ("https://rest.bandsintown.com/artists" + userInput + "/events?app_id=codingbootcamp");
+	var queryUrl = ("https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp");
 
 	request(queryUrl, function (err, response, body) {
 		if (!err && response.statusCode === 200) {
@@ -114,12 +114,10 @@ function concertThis() {
 		}
 
 		console.log("---------------------------------------------");
-		console.log("Band Name: " + (JSON.parse(body)[0].name));
-		console.log("Venue Name: " + (JSON.parse(body)[0].venue.name));
-		console.log("Venue City: " + (JSON.parse(body)[0].venue.city));
-		console.log(moment(JSON.parse[0].datetime).format("dddd, MMMM Do YYYY, h:mm:ss a"));
-
-
+		console.log(chalk.red("Band Name: " + (JSON.parse(body)[0].lineup)));
+		console.log(chalk.red("Venue Name: " + (JSON.parse(body)[0].venue.name)));
+		console.log(chalk.green("Venue City: " + (JSON.parse(body)[0].venue.city)));
+		console.log(chalk.green(moment(JSON.parse(body)[0].datetime).format("dddd, MMMM Do YYYY, h:mm:ss a")));
 
 	});
 }
